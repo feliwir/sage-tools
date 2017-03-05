@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Pfim;
 using sage.big;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace bigedit
@@ -44,6 +46,9 @@ namespace bigedit
 
         private void ui_listview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (ui_listview.SelectedItem is null)
+                return;
+
             BigArchiveEntry entry = ui_listview.SelectedItem as BigArchiveEntry;
             string extension = Path.GetExtension(entry.FullName);
            
@@ -65,9 +70,16 @@ namespace bigedit
             ui_content.Children.Clear();
             BigArchiveEntry entry = ui_listview.SelectedItem as BigArchiveEntry;
             Image img = new Image();
-            img.Source = BitmapFrame.Create(entry.Open(), 
-                                            BitmapCreateOptions.None,
-                                            BitmapCacheOption.OnLoad);
+            try
+            {
+                img.Source = BitmapFrame.Create(entry.Open(),
+                                           BitmapCreateOptions.None,
+                                           BitmapCacheOption.OnLoad);
+            }
+            catch
+            {
+
+            }
             
             ui_content.Children.Add(img);
         }
