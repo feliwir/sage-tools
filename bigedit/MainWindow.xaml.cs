@@ -32,7 +32,7 @@ namespace bigedit
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-
+            //ofd.Filter = ""
             if (ofd.ShowDialog() == true)
             {
                 BigArchive arch = new BigArchive(File.Open(ofd.FileName, FileMode.Open));
@@ -47,7 +47,7 @@ namespace bigedit
             BigArchiveEntry entry = ui_listview.SelectedItem as BigArchiveEntry;
             string extension = Path.GetExtension(entry.FullName);
            
-            if(extension==".tga"|| extension == ".jpg" || extension == ".png")
+            if(extension==".tga"|| extension == ".jpg" || extension == ".png" || extension ==".dds")
             {
                 SetImage();
             }
@@ -56,6 +56,8 @@ namespace bigedit
                 SetText();
             }
 
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ui_listview.ItemsSource);
+            view.Filter = UserFilter;
         }
 
         private void SetImage()
@@ -66,6 +68,7 @@ namespace bigedit
             img.Source = BitmapFrame.Create(entry.Open(), 
                                             BitmapCreateOptions.None,
                                             BitmapCacheOption.OnLoad);
+            
             ui_content.Children.Add(img);
         }
 
@@ -74,7 +77,9 @@ namespace bigedit
             ui_content.Children.Clear();
             BigArchiveEntry entry = ui_listview.SelectedItem as BigArchiveEntry;
             StreamReader sr = new StreamReader(entry.Open());
-            TextBlock tb = new TextBlock();
+            ScrollViewer sv = new ScrollViewer();
+            TextBox tb = new TextBox();
+            tb.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             tb.Text = sr.ReadToEnd();
             ui_content.Children.Add(tb);
         }
