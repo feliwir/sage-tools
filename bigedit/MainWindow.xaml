@@ -6,34 +6,48 @@
         xmlns:local="clr-namespace:bigedit"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Window.DataContext>
-        <local:ViewModel/>
-    </Window.DataContext>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-                <MenuItem Header="_New" />
-                <MenuItem Header="_Open" Click="Open_Click" />
-                <MenuItem Header="_Save" />
-                <Separator />
-                <MenuItem Header="_Exit" />
-            </MenuItem>
+        <MenuItem Header="_File">
+            <MenuItem Header="_New" />
+            <MenuItem Header="_Open" Click="Open_Click" />
+            <MenuItem Header="_Save" />
+            <Separator />
+            <MenuItem Header="_Exit" />
+        </MenuItem>
         </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Label Name="ui_status" Content="No file loaded"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <Label Name="ui_cursor" Content="Col 0 Row 0"/>
+            </StatusBarItem>
+        </StatusBar>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TreeView x:Name="ui_treeView" ItemsSource="{Binding Folders}">
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Folders}" DataType="{x:Type local:IFolder}">
-                        <TreeViewItem Header="{Binding FolderLabel}"/>
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-            </TreeView>
+            <DockPanel>
+                <TextBox DockPanel.Dock="Bottom" Margin="0,0,0,10" Name="ui_filter" TextChanged="ui_filter_TextChanged"/>
+                <ListView x:Name="ui_listview" SelectionChanged="ui_listview_SelectionChanged" SelectionMode="Single">
+                    <ListView.Resources>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding FullName}" />
+                            <GridViewColumn Header="Size" Width="Auto" DisplayMemberBinding="{Binding Length}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </DockPanel>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
-            <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
+            <Grid x:Name="ui_content"  Grid.Column="2"></Grid>
         </Grid>
     </DockPanel>
 </Window>
