@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26206.0
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bigedit", "bigedit\bigedit.csproj", "{8B3D33B1-D2E9-4AE0-A57C-4857986D225D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vp6play", "vp6play\vp6play.csproj", "{D68C80B3-63AF-4E46-8252-29113E1F57C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,18 @@ Global
 		{8B3D33B1-D2E9-4AE0-A57C-4857986D225D}.Release|x64.Build.0 = Release|Any CPU
 		{8B3D33B1-D2E9-4AE0-A57C-4857986D225D}.Release|x86.ActiveCfg = Release|Any CPU
 		{8B3D33B1-D2E9-4AE0-A57C-4857986D225D}.Release|x86.Build.0 = Release|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Debug|x64.Build.0 = Debug|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Debug|x86.Build.0 = Debug|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Release|x64.ActiveCfg = Release|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Release|x64.Build.0 = Release|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Release|x86.ActiveCfg = Release|Any CPU
+		{D68C80B3-63AF-4E46-8252-29113E1F57C4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

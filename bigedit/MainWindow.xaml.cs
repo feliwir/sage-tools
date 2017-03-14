@@ -1,14 +1,11 @@
 ﻿using Microsoft.Win32;
-using Pfim;
 using sage.big;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
+using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace bigedit
@@ -18,6 +15,8 @@ namespace bigedit
     /// </summary>
     public partial class MainWindow : Window
     {
+        SoundPlayer m_audio;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -56,6 +55,10 @@ namespace bigedit
             {
                 SetImage();
             }
+            else if(extension==".wav"|| extension == ".mp3")
+            {
+                SetAudio();
+            }
             else
             {
                 SetText();
@@ -82,6 +85,14 @@ namespace bigedit
             }
             
             ui_content.Children.Add(img);
+        }
+
+        private void SetAudio()
+        {
+            ui_content.Children.Clear();
+            BigArchiveEntry entry = ui_listview.SelectedItem as BigArchiveEntry;
+            m_audio = new SoundPlayer(entry.Open());
+            m_audio.Play();
         }
 
         private void SetText()
